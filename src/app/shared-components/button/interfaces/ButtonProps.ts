@@ -9,4 +9,5 @@ export interface ButtonProps {
     iconPosition?: 'left' | 'right';
     disabled?: boolean;
     typeAttribute : 'button' | 'submit' | 'reset';
+    href?: string;
 }

@@ -13,6 +13,7 @@ const Button: FC<ButtonProps> = ({
   icon,
   iconPosition,
   disabled,
+  href,
   typeAttribute = 'submit',
 }) => {
   const icons: { [key: string]: JSX.Element } = {
@@ -26,9 +27,10 @@ const Button: FC<ButtonProps> = ({
   };
 
   return (
-    <button
-      type={typeAttribute}
-      className={`
+    <a href={href}>
+      <button
+        type={typeAttribute}
+        className={`
         ${styles.button} 
         ${styles[`button--${type}`]} 
         ${styles[`button--${size}`]} 
@@ -36,14 +38,15 @@ const Button: FC<ButtonProps> = ({
         ${iconPosition ? styles[`button--icon-${iconPosition}`] : ''} 
         ${className ?? ''}
       `}
-      onClick={onClick}
-      role={typeAttribute}
-      disabled={disabled}
-    >
-      {iconPosition === 'left' && renderIcon()}
-      <span className={styles.text}>{text}</span>
-      {iconPosition === 'right' && renderIcon()}
-    </button>
+        onClick={onClick}
+        role={typeAttribute}
+        disabled={disabled}
+      >
+        {iconPosition === 'left' && renderIcon()}
+        <span className={styles.text}>{text}</span>
+        {iconPosition === 'right' && renderIcon()}
+      </button>
+    </a>
   );
 };
 
