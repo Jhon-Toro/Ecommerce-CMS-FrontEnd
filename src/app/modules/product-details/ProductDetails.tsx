@@ -48,8 +48,6 @@ const ProductDetails = () => {
     }, 50);
   };
 
-  if (!products || !reviews) return null;
-
   return (
     <section className={styles.container}>
       <main className={styles.container__main}>
@@ -64,10 +62,10 @@ const ProductDetails = () => {
         {activeTab === 'Product Details' && (
           <ProductDescription description={product.description} />
         )}
-        {activeTab === 'Rating & Reviews' && <Reviews review={reviews} />}
-        {activeTab === 'FAQs' && <Faqs faqs={faqs} />}
+        {activeTab === 'Rating & Reviews' && <Reviews review={reviews ?? []} />}
+        {activeTab === 'FAQs' && <Faqs faqs={faqs ?? []} />}
       </div>
-      <FeaturedProducts products={products.topSelling} category="YOU MIGHT ALSO LIKE" />
+      <FeaturedProducts products={products?.topSelling ?? []} category="YOU MIGHT ALSO LIKE" />
     </section>
   );
 };

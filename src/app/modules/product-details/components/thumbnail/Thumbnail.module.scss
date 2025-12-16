@@ -2,6 +2,7 @@
 
 .thumbnail {
     background: none;
+    position: relative;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -9,7 +10,11 @@
     height: utils.pxToRem(167px);
     border-radius: utils.pxToRem(20px);
 
-    @include utils.media-xs(){
+    &.loading {
+        pointer-events: none;
+    }
+
+    @include utils.media-xs() {
         width: utils.pxToRem(111px);
         height: utils.pxToRem(106px);
     }
@@ -21,7 +26,7 @@
         object-fit: cover;
         border: none;
 
-        @include utils.media-xs(){
+        @include utils.media-xs() {
             width: utils.pxToRem(111px);
             height: utils.pxToRem(106px);
         }

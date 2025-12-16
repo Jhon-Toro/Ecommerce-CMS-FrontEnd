@@ -2,32 +2,39 @@
 
 .product {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: utils.pxToRem(32px);
   max-width: max-content;
 
+  &__loading {
+    pointer-events: none;
+    opacity: 0;
+  }
+
   &__link {
     text-decoration: none;
     color: inherit;
   }
-  
+
   &__name {
     font-size: utils.pxToRem(20px);
     text-decoration: none;
   }
+
   &__image {
     object-fit: cover;
     border-radius: utils.pxToRem(8px);
 
-    @include utils.media-sm(){
-    width: utils.pxToRem(240px);
-    height: utils.pxToRem(240px);
+    @include utils.media-sm() {
+      width: utils.pxToRem(240px);
+      height: utils.pxToRem(240px);
     }
 
-    @include utils.media-xs(){
-    width: utils.pxToRem(340px);
-    height: utils.pxToRem(340px);
+    @include utils.media-xs() {
+      width: utils.pxToRem(340px);
+      height: utils.pxToRem(340px);
     }
   }
 
@@ -38,5 +45,5 @@
     align-items: flex-start;
     justify-content: center;
   }
-  
+
 }

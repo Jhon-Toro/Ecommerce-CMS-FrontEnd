@@ -20,13 +20,11 @@ export default function Home() {
     setProducts(data);
   };
   
-  if (!products) return;
-  
   return (
     <>
       <Hero />
-      <HomeProducts products={products.newArrivals} category="New Arrivals" />
-      <HomeProducts products={products.topSelling} category="Top Selling" />
+      <HomeProducts products={products?.newArrivals ?? []} category="New Arrivals" />
+      <HomeProducts products={products?.topSelling ?? []} category="Top Selling" />
       <HomeCategories/>
       <HappyCustomers/>
     </>

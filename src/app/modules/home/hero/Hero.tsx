@@ -1,12 +1,20 @@
+import { useState } from 'react';
 import Button from '@/app/shared-components/button/Button';
 import styles from './Hero.module.scss';
 import Image from 'next/image';
 import StatsCounter from '../stats-counter/StatsCounter';
 import BrandsBanner from '../brand-banner/BrandsBanner';
+import Skeleton from '@/app/components/skeleton/Skeleton';
 
 const Hero = () => {
+  const [desktopLoaded, setDesktopLoaded] = useState(false);
+  const [mobileLoaded, setMobileLoaded] = useState(false);
+
   return (
     <section className={styles.hero}>
+
+      {!desktopLoaded && <Skeleton />}
+
       <Image
         className={styles.hero__image}
         src="https://res.cloudinary.com/dxspvj1rj/image/upload/v1743273819/hero_oqglpz.png"
@@ -14,7 +22,10 @@ const Hero = () => {
         width={1440}
         height={663}
         priority
+        onLoad={() => setDesktopLoaded(true)}
       />
+      
+      {!mobileLoaded && <Skeleton />}
 
       <Image
         className={styles.hero__image_mobile}
@@ -23,6 +34,7 @@ const Hero = () => {
         width={390}
         height={448}
         priority
+        onLoad={() => setMobileLoaded(true)}
       />
       
       <article className={styles.hero__article}>
