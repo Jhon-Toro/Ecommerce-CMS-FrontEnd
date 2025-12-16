@@ -9,11 +9,11 @@ import { useState } from 'react';
 import Skeleton from '@/app/components/skeleton/Skeleton';
 
 const HomeCategory = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section className={style.category}>
       {categories.map((category, index) => {
-        const [imageLoaded, setImageLoaded] = useState(false);
-
         return (
           <div
             key={index}
