@@ -22,7 +22,7 @@ const Navbar: FC = () => {
         <ul className={styles.navbar__list}>
           <section className={styles.navbar__logo}>
             <Bars3Icon onClick={toggleSidebar} className={styles.navbar__hamburger} />
-            <strong className={styles.navbar__brand}>SHOP.COM</strong>
+            <Link className={styles.navbar__brand} href="/"><strong>SHOP.COM</strong></Link>
           </section>
           {data.navbar.map((item, index) => (
             <li key={index} className={styles.navbar__item}>

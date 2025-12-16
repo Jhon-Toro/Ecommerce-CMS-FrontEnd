@@ -43,7 +43,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
           quantity={quantity}
           setQuantity={setQuantity}
         />
-        <Button type='primary' text='Add to Cart' size='extra-large' typeAttribute='button' />
+        <Button id="add-to-cart" type='primary' text='Add to Cart' size='extra-large' typeAttribute='button' />
       </section>
     </article>
   );

@@ -17,8 +17,10 @@
 
   &__brand {
     font-size: utils.pxToRem(24px);
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
   }
 
   &__list {

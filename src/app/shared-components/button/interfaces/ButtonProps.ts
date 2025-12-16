@@ -10,4 +10,5 @@ export interface ButtonProps {
     disabled?: boolean;
     typeAttribute : 'button' | 'submit' | 'reset';
     href?: string;
+    id?: string;
 }

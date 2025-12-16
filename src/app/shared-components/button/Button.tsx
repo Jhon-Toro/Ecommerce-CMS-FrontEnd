@@ -1,7 +1,8 @@
-import { FC, JSX } from 'react';
 import type { ButtonProps } from './interfaces/ButtonProps';
-import styles from './Button.module.scss';
+import { FC, JSX } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import styles from './Button.module.scss';
+import clsx from 'clsx';
 
 const Button: FC<ButtonProps> = ({
   type,
@@ -15,6 +16,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   href,
   typeAttribute = 'submit',
+  id,
 }) => {
   const icons: { [key: string]: JSX.Element } = {
     'chevron-left': <ArrowLeftIcon className={styles.iconSvg} />,
@@ -22,31 +24,32 @@ const Button: FC<ButtonProps> = ({
   };
 
   const renderIcon = () => {
-    if (!icon || !icons[icon]) return null;
-    return <span className={styles.icon}>{icons[icon]}</span>;
+    icon && icons[icon] ? <span className={styles.icon}>{icons[icon]}</span> : null;
   };
 
+  const classes = clsx(
+    styles.button,
+    styles[`button--${type}`],
+    styles[`button--${size}`],
+    margin && styles[`button--${margin}`],
+    iconPosition && styles[`button--icon-${iconPosition}`],
+    className
+  );
+
+  const Component = href ? 'a' : 'button';
+
   return (
-    <a href={href}>
-      <button
-        type={typeAttribute}
-        className={`
-        ${styles.button} 
-        ${styles[`button--${type}`]} 
-        ${styles[`button--${size}`]} 
-        ${styles[`button--${margin}`]} 
-        ${iconPosition ? styles[`button--icon-${iconPosition}`] : ''} 
-        ${className ?? ''}
-      `}
-        onClick={onClick}
-        role={typeAttribute}
-        disabled={disabled}
-      >
-        {iconPosition === 'left' && renderIcon()}
-        <span className={styles.text}>{text}</span>
-        {iconPosition === 'right' && renderIcon()}
-      </button>
-    </a>
+    <Component
+      {...(href ? { href } : { type: typeAttribute })}
+      className={classes}
+      onClick={onClick}
+      id={id}
+      disabled={!href ? disabled : undefined}
+    >
+      {iconPosition === 'left' && renderIcon()}
+      <span className={styles.text}>{text}</span>
+      {iconPosition === 'right' && renderIcon()}
+    </Component>
   );
 };
 
