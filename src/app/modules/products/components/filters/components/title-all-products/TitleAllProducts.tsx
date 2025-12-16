@@ -1,56 +1,32 @@
 'use client';
 
 import { useFilterStore } from '@/app/store/filtersStore';
+import { SORT_OPTIONS } from './constants/constants';
+import { TitleAllProductsProps } from './interfaces/TitleAllProducts.interface';
+import { getShowingText } from './helpers/helpers';
 import styles from './TitleAllProducts.module.scss';
+import Select from '@/app/shared-components/select/Select';
 
-interface TitleAllProductsProps {
-  currentPage: number;
-  productsPerPage: number;
-  totalProducts: number;
-}
-
-const TitleAllProducts = ({ currentPage, productsPerPage, totalProducts }: TitleAllProductsProps) => {
+const TitleAllProducts = ({currentPage, productsPerPage, totalProducts}: TitleAllProductsProps) => {
   const { selectedCategoryName, sortBy, setSortBy } = useFilterStore();
 
-  const sortOptions = [
-    'Most Popular',
-    'Price: Low to High',
-    'Price: High to Low',
-    'Newest',
-  ];
+  const title = selectedCategoryName?.trim() ? selectedCategoryName : 'All Products';
 
-  const title = selectedCategoryName || 'All Products';
-
-  const startIndex = (currentPage - 1) * productsPerPage + 1;
-  const endIndex = Math.min(currentPage * productsPerPage, totalProducts);
-  const showingText = totalProducts > 0 ? `Showing ${startIndex}-${endIndex} of ${totalProducts} Products` : 'No Products Found';
-
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value);
-  };
+  const showingText = getShowingText({ currentPage, productsPerPage, totalProducts });
 
   return (
     <section className={styles.container}>
-      <h2 className={styles.title}>{title}</h2>
-      <div className={styles.info}>
-        <p className={styles.showing}>{showingText}</p>
-        <div className={styles.sort}>
-          <label htmlFor="sort" className={styles.sortLabel}>
-            Sort by:
-          </label>
-          <select
-            id="sort"
-            value={sortBy}
-            onChange={handleSortChange}
-            className={styles.sortSelect}
-          >
-            {sortOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
+      <h2 className={styles.container__title}>{title}</h2>
+
+      <div className={styles.container__info}>
+        <p className={styles.container__showing}>{showingText}</p>
+
+        <Select
+          value={sortBy}
+          options={SORT_OPTIONS}
+          onChange={setSortBy}
+        />
+
       </div>
     </section>
   );

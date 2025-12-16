@@ -29,12 +29,11 @@ const Navbar: FC = () => {
               <Link href={item.href} className={styles.navbar__link}>{item.label}</Link>
             </li>
           ))}
-          <div className={styles.navbar__search}>
+          <section className={styles.navbar__search}>
             <label htmlFor="search" className={styles.navbar__search_icon}><MagnifyingGlassIcon /></label>
-            <input type="text" id="search" name="search" placeholder="Search for products..." aria-label="Search for products" className={styles.navbar__search_input}/>
-          </div>
+            <input type="text" id="search" name="search" placeholder="Buscar productos..." aria-label="Buscar productos" className={styles.navbar__search_input}/>
+          </section>
           <section className={styles.navbar__right_icon}>
-            <MagnifyingGlassIcon className={styles.navbar__icon} />
             <ShoppingCartIcon className={styles.navbar__icon} />
             <UserCircleIcon className={styles.navbar__icon} />
           </section>

@@ -7,7 +7,7 @@ import styles from './Tabs.module.scss';
 
 const Tabs: FC<TabsProps> = ({ onTabChange }) => {
   const [activeTab, setActiveTab] = useState('Rating & Reviews');
-  const tabs = ['Product Details', 'Rating & Reviews', 'FAQs'];
+  const tabs = ['Product Details', 'Calificación y reseñas', 'FAQs'];
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);

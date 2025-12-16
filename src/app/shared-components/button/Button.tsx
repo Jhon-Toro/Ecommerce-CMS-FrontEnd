@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
   };
 
   const renderIcon = () => {
-    icon && icons[icon] ? <span className={styles.icon}>{icons[icon]}</span> : null;
+    return icon && icons[icon] ? <span className={styles.icon}>{icons[icon]}</span> : null;
   };
 
   const classes = clsx(
